@@ -32,23 +32,32 @@ namespace lab2
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            Persona persona = new Persona();
-            persona.cedula = txtCedula.Text;
-            persona.nombre = txtNombre.Text;
-            persona.apellido1 = txtApellido1.Text;
-            persona.apellido2 = txtApellido2.Text;
-            persona.fechaNacimiento = DateTime.Parse( dtpFechaNacimiento.Value.ToString("dd/MM/yyyy"));
-            persona.edad = persona.calculaEdad();
-            persona.estado = cbxEstado.SelectedItem.ToString();
-            persona.telefonos = capturar();
-            persona.provincia = cbxProvincias.SelectedItem.ToString();
-            persona.canton = cbxCantones.SelectedItem.ToString();
-            lista.AddLast(persona);
-            limpiar();
+            try
+            {
+                Persona persona = new Persona();
+                persona.cedula = txtCedula.Text;
+                persona.nombre = txtNombre.Text;
+                persona.apellido1 = txtApellido1.Text;
+                persona.apellido2 = txtApellido2.Text;
+                persona.fechaNacimiento = DateTime.Parse(dtpFechaNacimiento.Value.ToString("dd/MM/yyyy"));
+                persona.edad = persona.calculaEdad();
+                persona.estado = cbxEstado.SelectedItem.ToString();
+                persona.telefonos = capturar();
+                persona.provincia = cbxProvincias.SelectedItem.ToString();
+                persona.canton = cbxCantones.SelectedItem.ToString();
+                lista.AddLast(persona);
+                limpiar();
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
 
         }
         private void limpiar()
         {
+            txtCedula.Text = "";
             txtNombre.Text = "";
             txtApellido1.Text = "";
             txtApellido2.Text = "";
